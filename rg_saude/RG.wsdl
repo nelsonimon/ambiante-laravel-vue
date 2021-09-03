@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="https://webservices.austaclinicas.com.br/rg_saude/"   
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="rg_saude"
+	targetNamespace="https://webservices.austaclinicas.com.br/rg_saude/">
+
+	<wsdl:documentation>
+	</wsdl:documentation>
+	<wsdl:types>
+		<xsd:schema targetNamespace="https://webservices.austaclinicas.com.br/rg_saude/">
+			<xsd:element name="TokenRequest">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="usuario" type="xsd:string">
+							<xsd:annotation>
+								<xsd:documentation>Informe o seu usuário de acesso.
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="senha" type="xsd:string">
+							<xsd:annotation>
+								<xsd:documentation>Informe sua senha de acesso.
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="TokenResponse">
+				<xsd:complexType>
+					<xsd:choice>
+						<xsd:element name="erro" type="xsd:string">
+							<xsd:annotation>
+								<xsd:documentation>Retorno caso erro.
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="token" type="xsd:string">
+							<xsd:annotation>
+								<xsd:documentation>Retorno do Token utilizado para outros servicos.
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:choice>
+				</xsd:complexType>
+			</xsd:element>
+
+
+			<xsd:complexType name="protocoloCpt">
+				<xsd:sequence>
+					<xsd:element name="codigoProtocolo" type="xsd:integer" minOccurs="0" maxOccurs="1"></xsd:element>
+					<xsd:element name="lateralidade" type="xsd:string" minOccurs="0" maxOccurs="1"></xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="doenca">
+				<xsd:sequence>
+					<xsd:element name="codigoProtocolo" type="xsd:integer" minOccurs="0" maxOccurs="1"></xsd:element>
+					<xsd:element name="descricaoDoenca" type="xsd:string" minOccurs="0" maxOccurs="1"></xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="acomodacao">
+				<xsd:sequence>
+					<xsd:element name="registroAns" type="xsd:integer" minOccurs="1" maxOccurs="1"></xsd:element>
+					<xsd:element name="descricao" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="contrato">
+				<xsd:sequence>
+					<xsd:element name="numeroContrato" type="xsd:integer" minOccurs="1" maxOccurs="1"></xsd:element>
+					<xsd:element name="vigenciaContrato" type="xsd:date" minOccurs="1" maxOccurs="1"></xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="beneficiario">
+				<xsd:sequence>
+					<xsd:element name="codigoEntidade" type="xsd:integer" minOccurs="1" maxOccurs="1"></xsd:element>
+					<xsd:element name="dadosCorretora" >
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="cnpjCorretora" type="xsd:integer" minOccurs="1" maxOccurs="1"></xsd:element>
+								<xsd:element name="nomeCorretora" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="tipoCadastro" type="xsd:integer" minOccurs="1" maxOccurs="1"></xsd:element>
+					<xsd:element name="dadosCadastrais" maxOccurs="1" minOccurs="1"  >
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="tipoBeneficiario" 		type="xsd:integer"	minOccurs="1" maxOccurs="1"></xsd:element>
+								<xsd:element name="dataVigencia" 			type="xsd:date" 	minOccurs="1" maxOccurs="1"></xsd:element>
+								<xsd:element name="cpfBeneficiario" 		type="xsd:string" 	minOccurs="1" maxOccurs="1"></xsd:element>
+								<xsd:element name="cpfTitular" 				type="xsd:string" 	minOccurs="1" maxOccurs="1"></xsd:element>
+								<xsd:element name="relacaoDependencia" 		type="xsd:integer" 	minOccurs="1" maxOccurs="1"></xsd:element>
+								<xsd:element name="padraoConforto" 			type="xsd:integer" 	minOccurs="1" maxOccurs="1"></xsd:element>
+								<xsd:element name="nomeBeneficiario" 		type="xsd:string" 	minOccurs="1" maxOccurs="1"></xsd:element>
+								<xsd:element name="rg" 						type="xsd:string"	minOccurs="1" maxOccurs="1"></xsd:element>
+								<xsd:element name="dataNascimento" 			type="xsd:date"		minOccurs="1" maxOccurs="1"></xsd:element>
+								<xsd:element name="sexo" 					type="xsd:string" 	minOccurs="1" maxOccurs="1"></xsd:element>
+								<xsd:element name="estadoCivil"				type="xsd:integer" 	minOccurs="1" maxOccurs="1"></xsd:element>
+								<xsd:element name="cartaoNacional" 			type="xsd:integer" 	minOccurs="1" maxOccurs="1"></xsd:element>
+								<xsd:element name="nomeMae" 				type="xsd:string" 	minOccurs="1" maxOccurs="1"></xsd:element>
+								<xsd:element name="nomePai" 				type="xsd:string" 	minOccurs="0" maxOccurs="1"></xsd:element>
+								<xsd:element name="carteiraProfissional" 	type="xsd:string" 	minOccurs="0" maxOccurs="1"></xsd:element>
+								<xsd:element name="profissao" 				type="xsd:string" 	minOccurs="0" maxOccurs="1"></xsd:element>
+								<xsd:element name="dataAdmissao" 			type="xsd:date" 	minOccurs="0" maxOccurs="1"></xsd:element>
+								<xsd:element name="pis" 					type="xsd:integer" 	minOccurs="0" maxOccurs="1"></xsd:element>
+								<xsd:element name="enderecoCompleto" 		type="xsd:string" 	minOccurs="1" maxOccurs="1"></xsd:element>
+								<xsd:element name="bairro" 					type="xsd:string" 	minOccurs="1" maxOccurs="1"></xsd:element>
+								<xsd:element name="codigoMunicipioIbge" 	type="xsd:integer" 	minOccurs="1" maxOccurs="1"></xsd:element>
+								<xsd:element name="estado" 					type="xsd:string" 	minOccurs="1" maxOccurs="1"></xsd:element>
+								<xsd:element name="cep" 					type="xsd:integer" 	minOccurs="1" maxOccurs="1"></xsd:element>
+								<xsd:element name="dddTelefoneResidencial" 	type="xsd:integer" 	minOccurs="0" maxOccurs="1"></xsd:element>
+								<xsd:element name="telefoneResidencial" 	type="xsd:integer" 	minOccurs="0" maxOccurs="1"></xsd:element>
+								<xsd:element name="dddCelular" 				type="xsd:integer" 	minOccurs="0" maxOccurs="1"></xsd:element>
+								<xsd:element name="telefoneCelular" 		type="xsd:integer" 	minOccurs="0" maxOccurs="1"></xsd:element>
+								<xsd:element name="email" 					type="xsd:string" 	minOccurs="0" maxOccurs="1"></xsd:element>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="declaracaoSaude" >
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="classificaoRisco" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+								<xsd:element name="indicacaoPrograma" type="xsd:string" minOccurs="0" maxOccurs="1"></xsd:element>
+								<xsd:element name="protocolosCpt">
+									<xsd:complexType>
+										<xsd:sequence>
+											<xsd:element maxOccurs="unbounded" minOccurs="0" name="protocoloCpt" nillable="true" type="tns:protocoloCpt"/>
+										</xsd:sequence>
+									</xsd:complexType>
+								</xsd:element>
+								<xsd:element name="doencasOmitidas">
+									<xsd:complexType>
+										<xsd:sequence>
+											<xsd:element maxOccurs="unbounded" minOccurs="0" name="doenca" nillable="true" type="tns:doenca"/>
+										</xsd:sequence>
+									</xsd:complexType>
+								</xsd:element>
+								<xsd:element name="observacao" type="xsd:string" minOccurs="0" maxOccurs="1"></xsd:element>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="codigoCarencia" 		type="xsd:integer" 	minOccurs="0" maxOccurs="1"></xsd:element>
+					<xsd:element name="portabilidade" 		type="xsd:string" 	minOccurs="0" maxOccurs="1"></xsd:element>
+					<xsd:element name="registroAnsPortab" 	type="xsd:string" 	minOccurs="0" maxOccurs="1"></xsd:element>
+					<xsd:element name="dataSolicitPortab" 	type="xsd:date" 	minOccurs="0" maxOccurs="1"></xsd:element>
+					<xsd:element name="codProdutoPortab" 	type="xsd:integer" 	minOccurs="0" maxOccurs="1"></xsd:element>
+					<xsd:element name="numProtocoloPortab" 	type="xsd:integer" 	minOccurs="0" maxOccurs="1"></xsd:element>
+
+					   
+
+					<xsd:element name="transferenciasContratos">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element maxOccurs="unbounded" minOccurs="0" name="contrato" nillable="true" type="tns:contrato"/>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="linksPropostaAdesao">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element maxOccurs="unbounded" name="linkPropostaAdesao" type="xsd:string" minOccurs="0"></xsd:element>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:element name="EnviarClientesRequest">				
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="token" type="xsd:string" >
+							<xsd:annotation>
+								<xsd:documentation>Token obtido pelo método getToken.
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						
+						<xsd:element name="beneficiarios">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element maxOccurs="unbounded" name="beneficiario" nillable="true" type="tns:beneficiario"/>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="EnviarClientesResponse">
+				<xsd:complexType>
+					<xsd:choice>
+						<xsd:element name="erro" type="xsd:string">
+							<xsd:annotation>
+								<xsd:documentation>Retorno caso erro.
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="protocolo" type="xsd:string">
+							<xsd:annotation>
+								<xsd:documentation>Protocolo de Recebimento
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:choice>
+				</xsd:complexType>
+			</xsd:element>
+
+
+			<xsd:complexType name="entidade">
+				<xsd:sequence>
+       				<xsd:element name="codigoEntidade" type="xsd:integer" minOccurs="1"></xsd:element>
+       				<xsd:element name="nomeEntidade" type="xsd:string" minOccurs="1"></xsd:element>
+					<xsd:element name="cnpj" type="xsd:string" minOccurs="1"></xsd:element>
+					<xsd:element name="tipoPlano" type="xsd:string" minOccurs="1"></xsd:element>
+					<xsd:element name="acomodacoes">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element maxOccurs="unbounded" minOccurs="0" name="acomodacao" nillable="true" type="tns:acomodacao"/>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:element name="ListarEntidadesRequest">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="token" type="xsd:string">
+							<xsd:annotation>
+								<xsd:documentation>Informe o seu TOKEN de acesso.
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="ListarEntidadesResponse">
+				<xsd:complexType>
+					<xsd:choice>
+						<xsd:element name="erro" type="xsd:string">
+							<xsd:annotation>
+								<xsd:documentation>Retorno caso erro.
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="entidades">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element maxOccurs="unbounded" minOccurs="0" name="entidade" nillable="true" type="tns:entidade"/>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:choice>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="ListarProtocolosCptRequest">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="token" type="xsd:string">
+							<xsd:annotation>
+								<xsd:documentation>Informe o seu TOKEN de acesso.
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="ListarProtocolosCptResponse">
+				<xsd:complexType>
+					<xsd:choice>
+						<xsd:element name="erro" type="xsd:string">
+							<xsd:annotation>
+								<xsd:documentation>Retorno caso erro.
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="cpts">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element maxOccurs="unbounded" minOccurs="0" name="cpt" nillable="true" type="tns:cpt"/>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:choice>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:complexType name="cpt">
+				<xsd:sequence>
+       				<xsd:element name="codigoCpt" type="xsd:integer" minOccurs="1"></xsd:element>
+       				<xsd:element name="descricaoCpt" type="xsd:string" minOccurs="1"></xsd:element>
+       				<xsd:element name="cid" type="xsd:string" minOccurs="1"></xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:element name="ConsultarProtocolosRequest">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="token" type="xsd:string" minOccurs="1">
+							<xsd:annotation>
+								<xsd:documentation>Informe o seu TOKEN de acesso.
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="protocolos">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element maxOccurs="unbounded" name="protocolo" nillable="true" type="xsd:integer"/>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			
+
+			<xsd:complexType name="beneficiarioRetorno">
+				<xsd:sequence>
+       				<xsd:element name="cpfBeneficiario" type="xsd:string" minOccurs="1"></xsd:element>
+					<xsd:element name="status" type="xsd:string" minOccurs="1"></xsd:element>
+					<!-- <xsd:element name="numeroCartao" type="xsd:string" minOccurs="0"></xsd:element> -->
+					<xsd:element name="observacao" type="xsd:string" minOccurs="1"></xsd:element>
+					<xsd:element name="dadosCartao" minOccurs="0" maxOccurs="1">
+						<xsd:complexType>
+							<xsd:sequence>					
+								<xsd:element name="codigo_usuario_cartao" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+							    <xsd:element name="num_cadastro" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+							    <xsd:element name="nome_completo" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+							    <xsd:element name="data_nascimento" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+							    <xsd:element name="data_vigencia" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+							    <xsd:element name="plano" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+							    <xsd:element name="padrao" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+							    <xsd:element name="validade" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+							    <xsd:element name="nome_empresa" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+							    <xsd:element name="cns" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+							    <xsd:element name="trilha_magnetica_1" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+							    <xsd:element name="trilha_magnetica_2" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+							    <xsd:element name="carencia_01" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+							    <xsd:element name="disc_carencia_01" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+							    <xsd:element name="carencia_02" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+							    <xsd:element name="disc_carencia_02" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+							    <xsd:element name="carencia_03" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+							    <xsd:element name="disc_carencia_03" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+							    <xsd:element name="carencia_04" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+							    <xsd:element name="disc_carencia_04" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+							    <xsd:element name="carencia_05" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+							    <xsd:element name="disc_carencia_05" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+							    <xsd:element name="carencia_06" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+							    <xsd:element name="disc_carencia_06" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+							    <xsd:element name="carencia_07" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+							    <xsd:element name="disc_carencia_07" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+							    <xsd:element name="carencia_08" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+							    <xsd:element name="disc_carencia_08" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+							    <xsd:element name="carencia_09" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+							    <xsd:element name="disc_carencia_09" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+							    <xsd:element name="carencia_10" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+							    <xsd:element name="disc_carencia_10" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+							    <xsd:element name="carencia_11" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+							    <xsd:element name="disc_carencia_11" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+							    <xsd:element name="carencia_12" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+							    <xsd:element name="disc_carencia_12" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+							    <xsd:element name="carencia_13" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+							    <xsd:element name="disc_carencia_13" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+							    <xsd:element name="msg_pre_exist" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+							    <xsd:element name="logo_odonto" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+							    <xsd:element name="num_cartao_odonto" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+							</xsd:sequence>				
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="cptsAplicadas" minOccurs="0" maxOccurs="1">	
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element maxOccurs="unbounded" minOccurs="0" name="codigoCptAplicado" nillable="true" type="xsd:integer"/>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>				
+			</xsd:complexType>
+
+
+			<xsd:complexType name="protocolo">
+				<xsd:sequence>
+       				<xsd:element name="numeroProtocolo" type="xsd:integer" minOccurs="1"></xsd:element>
+					<xsd:element name="status" type="xsd:integer" minOccurs="1"></xsd:element>
+					<xsd:element name="observacao" type="xsd:string" minOccurs="1"></xsd:element>
+					<xsd:element name="beneficiarios" minOccurs="0">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element maxOccurs="unbounded" minOccurs="0" name="beneficiario" nillable="true" type="tns:beneficiarioRetorno"/>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:element name="ConsultarProtocolosResponse">
+				<xsd:complexType>
+					<xsd:choice>
+						<xsd:element name="erro" type="xsd:string">
+							<xsd:annotation>
+								<xsd:documentation>Retorno caso erro.
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="protocolos">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element maxOccurs="unbounded" minOccurs="0" name="protocolo" nillable="true" type="tns:protocolo"/>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:choice>
+				</xsd:complexType>
+			</xsd:element>
+
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="TokenRequest">
+		<wsdl:part element="tns:TokenRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="TokenResponse">
+		<wsdl:part element="tns:TokenResponse" name="parameters" />
+	</wsdl:message>
+
+	<wsdl:message name="EnviarClientesRequest">
+		<wsdl:part element="tns:EnviarClientesRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="EnviarClientesResponse">
+		<wsdl:part element="tns:EnviarClientesResponse" name="parameters" />
+	</wsdl:message>
+
+	<wsdl:message name="ListarEntidadesRequest">
+		<wsdl:part element="tns:ListarEntidadesRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="ListarEntidadesResponse">
+		<wsdl:part element="tns:ListarEntidadesResponse" name="parameters" />
+	</wsdl:message>
+
+	<wsdl:message name="ListarProtocolosCptRequest">
+		<wsdl:part element="tns:ListarProtocolosCptRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="ListarProtocolosCptResponse">
+		<wsdl:part element="tns:ListarProtocolosCptResponse" name="parameters" />
+	</wsdl:message>
+
+	<wsdl:message name="ConsultarProtocolosRequest">
+		<wsdl:part element="tns:ConsultarProtocolosRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="ConsultarProtocolosResponse">
+		<wsdl:part element="tns:ConsultarProtocolosResponse" name="parameters" />
+	</wsdl:message>
+
+	<wsdl:portType name="webservicesPortType">
+		<wsdl:operation name="getToken">
+			<wsdl:input message="tns:TokenRequest" />
+			<wsdl:output message="tns:TokenResponse" />
+		</wsdl:operation>
+
+		<wsdl:operation name="enviarClientes">
+			<wsdl:input message="tns:EnviarClientesRequest" />
+			<wsdl:output message="tns:EnviarClientesResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="listarEntidades">
+			<wsdl:input message="tns:ListarEntidadesRequest" />
+			<wsdl:output message="tns:ListarEntidadesResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="listarProtocolosCpt">
+			<wsdl:input message="tns:ListarProtocolosCptRequest" />
+			<wsdl:output message="tns:ListarProtocolosCptResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="consultarProtocolos">
+			<wsdl:input message="tns:ConsultarProtocolosRequest" />
+			<wsdl:output message="tns:ConsultarProtocolosResponse" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="RGSOAP" type="tns:webservicesPortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="getToken">
+			<soap:operation soapAction="https://webservices.austaclinicas.com.br/rg_saude/getToken" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="enviarClientes">
+			<soap:operation soapAction="https://webservices.austaclinicas.com.br/rg_saude/enviarClientes" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="listarEntidades">
+			<soap:operation soapAction="https://webservices.austaclinicas.com.br/rg_saude/listarEntidades" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="listarProtocolosCpt">
+			<soap:operation soapAction="https://webservices.austaclinicas.com.br/rg_saude/listarProtocolosCpt" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="consultarProtocolos">
+			<soap:operation soapAction="https://webservices.austaclinicas.com.br/rg_saude/consultarProtocolos" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="webservices">
+		<wsdl:port binding="tns:RGSOAP" name="RGSOAP">
+			<soap:address location="https://webservices.austaclinicas.com.br/rg_saude/server.php" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

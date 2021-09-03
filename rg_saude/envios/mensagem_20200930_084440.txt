@@ -1,0 +1,2 @@
+<?xml version="1.0"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><SOAP-ENV:Body><TokenRequest xmlns="https://webservices.austaclinicas.com.br/lancers/"><usuario xmlns="">LANCERS</usuario><senha xmlns="">A89S684A@l</senha></TokenRequest></SOAP-ENV:Body></SOAP-ENV:Envelope>

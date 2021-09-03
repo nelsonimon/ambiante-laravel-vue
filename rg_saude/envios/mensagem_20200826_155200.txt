@@ -1,0 +1,8 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:lan="https://webservices.austaclinicas.com.br/lancers/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <lan:ListarEntidadesRequest>
+         <token>8FE9735E5EDAB6CC8E3CB9AD15BBAB93</token>
+      </lan:ListarEntidadesRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
